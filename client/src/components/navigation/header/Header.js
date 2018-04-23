@@ -2,11 +2,7 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import FlatButton from 'material-ui/FlatButton';
-
-function handleClick() {
-  alert('onClick triggered on the title component');
-}
+import Button from '../../UI/button/Button';
 
 const styles = {
   title: {
@@ -14,23 +10,19 @@ const styles = {
   },
 };
 
-const buttonStyle = {
-  color: 'white',
-}
-
 const rightButtons = (
   <div>
-    <FlatButton label="Burger Builder" style={buttonStyle}/>
-    <FlatButton label="Order" style={buttonStyle}/>
-    <FlatButton label="Logout" style={buttonStyle}/>
+    <Button label="Burger Builder" />
+    <Button label="Order" />
+    <Button label="Logout" />
   </div>
 )
 
 const header = () => {
   return (
     <AppBar
+      verticalAlign="middle"
       title={<span style={styles.title}>Burger Express</span>}
-      onTitleClick={handleClick}
       iconElementLeft={<IconButton><NavigationClose /></IconButton>}
       iconElementRight={rightButtons}
     />
