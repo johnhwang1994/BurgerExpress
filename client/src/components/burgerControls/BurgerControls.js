@@ -29,7 +29,7 @@ const burgerControls = props => {
   return (
     <Paper className={classes.root}>
       <Typography variant="title" color="inherit">
-        Current Price: {props.price}
+        Current Price: {props.totalPrice.toFixed(2)}
       </Typography>
       <form>
         {controls.map(ctrl => (
@@ -38,7 +38,7 @@ const burgerControls = props => {
             label={ctrl.label}
             onAddIngredient={() => props.onAddIngredient(ctrl.type)}
             onRemoveIngredient={() => props.onRemoveIngredient(ctrl.type)}
-            disable={props.disable[ctrl.type]}
+            disable={props.ingredients[ctrl.type] <= 0}
           />
         ))}
       </form>

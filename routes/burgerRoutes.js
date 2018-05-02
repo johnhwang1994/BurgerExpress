@@ -15,9 +15,9 @@ module.exports = app => {
   // get initial ingredients
   app.get('/api/burger/init', async (req, res) => {
     // Grab ingredients' price from mongoDB.
-    const ingredientPrice = await IngredientPrice.findOne({ _id: keys.ingredientPriceId });
+    const initialData = await IngredientPrice.findOne({ _id: keys.ingredientPriceId });
     // Send the price data to the front server.
-    res.send(ingredientPrice);
+    res.send(initialData);
   });
 
 };

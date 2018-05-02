@@ -28,7 +28,7 @@ const order = props => {
             marginTop: '10px'
           }}
         >
-          Price: USD {props.price}
+          Price: USD {props.price.toFixed(2)}
         </Typography>
       </CardContent>
     </Card>

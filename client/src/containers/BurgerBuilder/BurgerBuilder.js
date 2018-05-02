@@ -3,17 +3,30 @@ import { connect } from 'react-redux';
 
 import Burger from '../../components/burger/Burger';
 import BurgerControls from '../../components/burgerControls/BurgerControls';
-import * as actions from '../../store/actions';
+import { addIngredient, removeIngredient, intiate } from '../../store/actions';
+import Progress from '../../components/UI/Progress';
 
 class BurgerBuilder extends Component {
-  getDisableInfo(){
-    const disableInfo ={
+  state = {
+    purchasing: false
+  }
+
+  componentDidMount() {
+    this.props.intiate();
+  }
+
+  getDisableInfo() {
+    const disableInfo = {
       ...this.props.ings
-    }
-    for(let key in disableInfo){
+    };
+    for (let key in disableInfo) {
       disableInfo[key] = disableInfo[key] <= 0;
     }
     return disableInfo;
+  }
+
+  burgerProgress(ingredients){
+    return (ingredients ? <Burger ingredients={this.props.ings} /> : <Progress />)
   }
 
   render() {
@@ -23,11 +36,13 @@ class BurgerBuilder extends Component {
           paddingTop: '50px'
         }}
       >
-        <Burger ingredients={this.props.ings} />
+        {this.burgerProgress(this.props.ings)}
         <BurgerControls
-          onAddIngredient={this.props.onAddIngredient}
-          onRemoveIngredient={this.props.onRemoveIngredient}
+          onAddIngredient={this.props.addIngredient}
+          onRemoveIngredient={this.props.removeIngredient}
           disable={this.getDisableInfo()}
+          totalPrice={this.props.totalPrice}
+          ingredients={this.props.ings}
         />
       </div>
     );
@@ -37,13 +52,13 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
-    totalPrice: state.burgerBuilder.totalPrice
+    totalPrice: state.burgerBuilder.totalPrice,
+    err: state.burgerBuilder.error
   };
 };
 
-const mapDispatchToProps = {
-  onAddIngredient: actions.addIngredient,
-  onRemoveIngredient: actions.removeIngredient
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(BurgerBuilder);
+export default connect(mapStateToProps, {
+  addIngredient,
+  removeIngredient,
+  intiate
+})(BurgerBuilder);

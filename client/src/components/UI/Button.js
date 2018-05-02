@@ -19,7 +19,6 @@ const button = props => {
   return (
     <Button
       {...myProps}
-      disabled={props.disable}
       disableRipple
       className={className}
     >

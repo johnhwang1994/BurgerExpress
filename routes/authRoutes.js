@@ -12,12 +12,12 @@ module.exports = app => {
   );
 
   // if failed user will be direct to lgoin page
-  // if succeed user will be direct to /surveys.
+  // if succeed user will be direct to "/".
   app.get(
     '/auth/google/callback',
     passport.authenticate('google'),
     (req, res) => {
-      // res.redirect('/surveys');
+      res.redirect('/');
     }
   );
 

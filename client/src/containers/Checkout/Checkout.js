@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import ContactData from '../../components/contactData/ContactData';
@@ -20,12 +21,27 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        <CheckoutSummary />
-        <ContactData onClick={this.handleOpen}/>
-        <ReviewModal myProps={{open: this.state.showReviewModal, onClose: this.handleClose}} />
+        <CheckoutSummary
+          ingredients={this.props.ings}
+          totalPrice={this.props.totalPrice}
+        />
+        <ContactData onClick={this.handleOpen} />
+        <ReviewModal
+          myProps={{
+            open: this.state.showReviewModal,
+            onClose: this.handleClose
+          }}
+        />
       </div>
     );
   }
 }
 
-export default Checkout;
+const mapStateToProps = state => {
+  return {
+    ings: state.burgerBuilder.ingredients,
+    totalPrice: state.burgerBuilder.totalPrice
+  };
+};
+
+export default connect(mapStateToProps)(Checkout);

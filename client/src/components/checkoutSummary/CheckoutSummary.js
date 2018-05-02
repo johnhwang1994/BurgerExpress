@@ -2,16 +2,10 @@ import React from 'react';
 
 import Order from '../order/Order';
 
-const checkoutSummary = () => {
-  const ingredients = {
-    Meat: 1,
-    Salad: 2,
-    Cheese: 1,
-    Bacon: 0
-  };
+const checkoutSummary = props => {
   return (
     <div>
-      <Order ingredients={ingredients} price={20} />
+      <Order ingredients={props.ingredients} price={props.totalPrice} />
     </div>
   )
 }

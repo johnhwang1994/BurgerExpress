@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import Layout from './hoc/layout/Layout';
 
+import { fetchUser } from './store/actions';
 // Routes
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
 import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -22,4 +28,10 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  }
+}
+
+export default connect(mapStateToProps, { fetchUser })(App);

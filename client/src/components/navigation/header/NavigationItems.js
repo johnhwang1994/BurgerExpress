@@ -1,5 +1,5 @@
 import React from 'react';
-// material-ui
+
 import Button from '../../UI/Button';
 import { Link } from 'react-router-dom';
 
@@ -30,21 +30,19 @@ const navigationItems = props => (
     {!props.isAuthenticated ? (
       <Button
         myProps={{
-          to: '/login',
+          href: '/auth/google',
           color: 'inherit',
           size: 'medium',
-          component: Link
         }}
       >
-        Login
+        Login with Google
       </Button>
     ) : (
       <Button
         myProps={{
-          to: '/logout',
+          href: 'api/logout',
           color: 'inherit',
           size: 'medium',
-          component: Link
         }}
       >
         Logout

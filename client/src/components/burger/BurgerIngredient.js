@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const BreadBottom = styled.div`
   height: 13%;
   width: 80%;
-  background: linear-gradient(#F08E4A, #e27b36);
+  background: linear-gradient(#f08e4a, #e27b36);
   border-radius: 0 0 30px 30px;
   box-shadow: inset -15px 0 #c15711;
   margin: 2% auto;
@@ -18,64 +18,6 @@ const BreadTop = styled.div`
   box-shadow: inset -15px 0 #c15711;
   margin: 2% auto;
   position: relative;
-`;
-
-const Seeds1 = styled.div`
-  height: 20%;
-  width: 80%;
-  background: linear-gradient(#bc581e, #e27b36);
-  border-radius: 50% 50% 0 0;
-  box-shadow: inset -15px 0 #c15711;
-  margin: 2% auto;
-  position: relative;
-  &:after {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: white;
-    left: -170%;
-    top: -260%;
-    border-radius: 40%;
-    transform: rotate(60deg);
-    box-shadow: inset -1px 2px #c9c9c9;
-  }
-  &:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: white;
-    left: 180%;
-    top: -50%;
-    border-radius: 40%;
-    transform: rotate(60deg);
-    box-shadow: inset -1px -3px #c9c9c9;
-  }
-`;
-
-const Seeds2 = styled.div`
-  width: 10%;
-  height: 15%;
-  position: absolute;
-  background-color: white;
-  left: 64%;
-  top: 50%;
-  border-radius: 40%;
-  transform: rotate(10deg);
-  box-shadow: inset -3px 0 #c9c9c9;
-  &:before {
-    content: "";
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: white;
-    left: 150%;
-    top: -130%;
-    border-radius: 40%;
-    transform: rotate(90deg);
-    box-shadow: inset 1px 3px #c9c9c9;
-  }
 `;
 
 const Meat = styled.div`
@@ -111,34 +53,29 @@ const Bacon = styled.div`
 
 const burgerIngredient = props => {
   let ingredient = null;
-  switch (props.type){
-    case("bread-bottom"):
-      ingredient = <BreadBottom/>;
+  switch (props.type) {
+    case 'bread-bottom':
+      ingredient = <BreadBottom />;
       break;
-    case("bread-top"):
-      ingredient = (
-        <BreadTop>
-          {/* <Seeds1/>
-          <Seeds2/> */}
-        </BreadTop>
-      )
+    case 'bread-top':
+      ingredient = <BreadTop />;
       break;
-    case("meat"):
-      ingredient = <Meat/>;
+    case 'meat':
+      ingredient = <Meat />;
       break;
-    case("cheese"):
-      ingredient = <Cheese/>;
+    case 'cheese':
+      ingredient = <Cheese />;
       break;
-    case("bacon"):
-      ingredient = <Bacon/>;
+    case 'bacon':
+      ingredient = <Bacon />;
       break;
-    case("salad"):
-      ingredient = <Salad/>;
+    case 'salad':
+      ingredient = <Salad />;
       break;
     default:
-      ingredient = null;  
+      ingredient = null;
   }
   return ingredient;
-}
+};
 
 export default burgerIngredient;

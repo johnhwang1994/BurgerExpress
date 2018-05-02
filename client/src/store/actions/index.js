@@ -1,5 +1,9 @@
 export {
   addIngredient,
   removeIngredient,
-  setIngredients
+  intiate
 } from './burgerBuilder';
+
+export {
+  fetchUser
+} from './auth';

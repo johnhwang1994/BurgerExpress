@@ -35,8 +35,8 @@ const control = props => {
           onClick: props.onRemoveIngredient,
           variant: 'raised',
           color: 'primary',
+          disabled: props.disable
         }}
-        disable={props.disable}
         className={classes.button}
       >
         Less
