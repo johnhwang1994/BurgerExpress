@@ -5,10 +5,12 @@ import Typography from 'material-ui/Typography';
 export default data => {
   const list = [];
   for (let name in data) {
-    list.push({
-      name: name,
-      content: data[name]
-    });
+    if(name !== '_id'){
+      list.push({
+        name: name,
+        content: data[name]
+      });
+    }
   }
   const listOutput = list.map(item => {
     return (

@@ -21,6 +21,9 @@ const styles = {
     display: 'flex',
     flexFlow: 'column',
     padding: '20px'
+  },
+  price: {
+    marginBottom: '10px'
   }
 };
 
@@ -28,7 +31,7 @@ const burgerControls = props => {
   const { classes } = props;
   return (
     <Paper className={classes.root}>
-      <Typography variant="title" color="inherit">
+      <Typography variant="title" color="inherit" className={classes.price}>
         Current Price: {props.totalPrice.toFixed(2)}
       </Typography>
       <form>
@@ -49,6 +52,7 @@ const burgerControls = props => {
           size: "large",
           variant: "raised",
           color: "inherit",
+          disabled: !props.purchasable
         }}
       >
         Order Now!

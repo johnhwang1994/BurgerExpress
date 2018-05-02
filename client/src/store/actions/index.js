@@ -7,3 +7,8 @@ export {
 export {
   fetchUser
 } from './auth';
+
+export {
+  submitOrder,
+  fetchOrders
+} from './order'

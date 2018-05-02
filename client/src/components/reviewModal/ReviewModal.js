@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -9,6 +10,7 @@ import Paper from 'material-ui/Paper';
 import classNames from 'classnames';
 
 import listOutput from '../output/listOutput';
+import { submitOrder } from '../../store/actions';
 
 const styles = theme => ({
   root: {
@@ -37,8 +39,13 @@ const ingredients = {
 };
 
 const reviewModal = props => {
-  const { classes, myProps } = props;
+  const { classes, myProps, history } = props;
   const className = classNames(classes.root, props.className);
+  const order = {
+    ingredients: props.ingredients,
+    price: props.price,
+    contactData: props.formValues
+  }
   return (
     <Modal {...myProps} className={className}>
       <Paper className={classes.content}>
@@ -51,7 +58,8 @@ const reviewModal = props => {
           myProps={{
             color: 'primary',
             size: 'large',
-            variant: 'raised'
+            variant: 'raised',
+            onClick: (() => props.submitOrder(order, history))
           }}
           className={classes.button}
         >
@@ -64,8 +72,12 @@ const reviewModal = props => {
 
 const mapStateToProps = state => {
   return {
-    formValues: state.form.contactData.values
+    formValues: state.form.contactData.values,
+    ingredients: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice
   };
 };
 
-export default connect(mapStateToProps)(withStyles(styles)(reviewModal));
+export default connect(mapStateToProps, { submitOrder })(
+  withRouter(withStyles(styles)(reviewModal))
+);

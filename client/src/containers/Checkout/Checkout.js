@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
+// import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import ContactData from '../../components/contactData/ContactData';
 import ReviewModal from '../../components/reviewModal/ReviewModal';
 
@@ -21,10 +21,10 @@ class Checkout extends Component {
   render() {
     return (
       <div>
-        <CheckoutSummary
+        {/* <CheckoutSummary
           ingredients={this.props.ings}
           totalPrice={this.props.totalPrice}
-        />
+        /> */}
         <ContactData onClick={this.handleOpen} />
         <ReviewModal
           myProps={{

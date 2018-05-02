@@ -25,6 +25,14 @@ class BurgerBuilder extends Component {
     return disableInfo;
   }
 
+  updatePurchaseState() {
+    let sum = 0;
+    for(let ingName in this.props.ings){
+      sum += this.props.ings[ingName];
+    }
+    return sum > 0;
+  }
+
   burgerProgress(ingredients){
     return (ingredients ? <Burger ingredients={this.props.ings} /> : <Progress />)
   }
@@ -43,6 +51,7 @@ class BurgerBuilder extends Component {
           disable={this.getDisableInfo()}
           totalPrice={this.props.totalPrice}
           ingredients={this.props.ings}
+          purchasable={this.updatePurchaseState()}
         />
       </div>
     );
@@ -53,7 +62,8 @@ const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
-    err: state.burgerBuilder.error
+    err: state.burgerBuilder.error,
+    user: state.auth.user
   };
 };
 

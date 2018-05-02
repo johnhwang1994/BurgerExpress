@@ -16,11 +16,11 @@ const styles = {
 
 const order = props => {
   const { classes } = props;
-
   return (
     <Card className={classes.root}>
       <CardContent>
         {listOutput(props.ingredients)}
+        {listOutput(props.contactData)}
         <Typography
           variant="body1"
           color="inherit"
