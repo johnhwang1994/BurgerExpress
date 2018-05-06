@@ -4,4 +4,5 @@ module.exports = {
   googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
   cookieKey: process.env.COOKIE_KEY,
   mongoURI: process.env.MONGO_URI,
+  ingredientPriceId: process.env.INGREDIENT_PRICE_ID,
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import Typography from 'material-ui/Typography';
 import Paper from 'material-ui/Paper';
@@ -47,8 +46,7 @@ const burgerControls = props => {
       </form>
       <Button
         myProps={{
-          component: Link,
-          to: "/checkout",
+          onClick: props.click,
           size: "large",
           variant: "raised",
           color: "inherit",

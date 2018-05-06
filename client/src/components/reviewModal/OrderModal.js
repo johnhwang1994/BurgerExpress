@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
@@ -10,7 +10,6 @@ import Paper from 'material-ui/Paper';
 import classNames from 'classnames';
 
 import listOutput from '../output/listOutput';
-import { submitOrder } from '../../store/actions';
 
 const styles = theme => ({
   root: {
@@ -26,45 +25,55 @@ const styles = theme => ({
   title: {
     marginBottom: '10px'
   },
-  button: {
+  buttons: {
     marginTop: '10px'
   }
 });
 
-const ingredients = {
-  meat: 1,
-  salad: 2,
-  cheese: 1,
-  bacon: 0
-};
-
 const reviewModal = props => {
-  const { classes, myProps, history } = props;
+  const { classes, myProps } = props;
   const className = classNames(classes.root, props.className);
-  const order = {
-    ingredients: props.ingredients,
-    price: props.price,
-    contactData: props.formValues
-  }
   return (
     <Modal {...myProps} className={className}>
       <Paper className={classes.content}>
         <Typography variant="title" color="inherit" className={classes.title}>
-          Confirm Information:
+          Confirm Order Information:
         </Typography>
-        {listOutput(ingredients)}
-        {listOutput(props.formValues)}
-        <Button
-          myProps={{
-            color: 'primary',
-            size: 'large',
-            variant: 'raised',
-            onClick: (() => props.submitOrder(order, history))
+        {listOutput(props.ingredients)}
+        <Typography
+          variant="subheading"
+          color="inherit"
+          style={{
+            marginTop: '10px'
           }}
-          className={classes.button}
         >
-          Submit
-        </Button>
+          Price: USD {props.price.toFixed(2)}
+        </Typography>
+        <div className={classes.buttons}>
+          <Button
+            myProps={{
+              color: 'secondary',
+              size: 'large',
+              variant: 'raised',
+              onClick: props.close,
+              style: { float: 'left' }
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            myProps={{
+              component: Link,
+              to: '/checkout',
+              color: 'primary',
+              size: 'large',
+              variant: 'raised',
+              style: { float: 'right' }
+            }}
+          >
+            Continue
+          </Button>
+        </div>
       </Paper>
     </Modal>
   );
@@ -72,12 +81,11 @@ const reviewModal = props => {
 
 const mapStateToProps = state => {
   return {
-    formValues: state.form.contactData.values,
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice
   };
 };
 
-export default connect(mapStateToProps, { submitOrder })(
-  withRouter(withStyles(styles)(reviewModal))
+export default connect(mapStateToProps)(
+  withStyles(styles)(reviewModal)
 );

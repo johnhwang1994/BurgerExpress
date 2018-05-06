@@ -5,10 +5,11 @@ import Burger from '../../components/burger/Burger';
 import BurgerControls from '../../components/burgerControls/BurgerControls';
 import { addIngredient, removeIngredient, intiate } from '../../store/actions';
 import Progress from '../../components/UI/Progress';
+import OrderModal from '../../components/reviewModal/OrderModal';
 
 class BurgerBuilder extends Component {
   state = {
-    purchasing: false
+    showOrderModal: false,
   }
 
   componentDidMount() {
@@ -33,6 +34,14 @@ class BurgerBuilder extends Component {
     return sum > 0;
   }
 
+  handleOpen = () => {
+    this.setState({ showOrderModal: true });
+  };
+
+  handleClose = () => {
+    this.setState({ showOrderModal: false });
+  };
+
   burgerProgress(ingredients){
     return (ingredients ? <Burger ingredients={this.props.ings} /> : <Progress />)
   }
@@ -52,6 +61,14 @@ class BurgerBuilder extends Component {
           totalPrice={this.props.totalPrice}
           ingredients={this.props.ings}
           purchasable={this.updatePurchaseState()}
+          click={this.handleOpen}
+        />
+        <OrderModal
+          myProps={{
+            open: this.state.showOrderModal,
+            onClose: this.handleClose
+          }}
+          close={this.handleClose}
         />
       </div>
     );
