@@ -39,14 +39,14 @@ class Layout extends Component {
       <React.Fragment>
         <MuiThemeProvider theme={theme}>
           <CssBaseline />
-          <Header sideBarToggle={this.toggleDrawer('showSideDrawer', true)} />
+          <Header sideBarToggle={this.toggleDrawer('showSideDrawer', true)} user={this.props.user}/>
           <SideBar
             myProps={{
               open: this.state.showSideDrawer,
               onClose: this.toggleDrawer('showSideDrawer', false)
             }}
             toggleDrawer={this.toggleDrawer('showSideDrawer', false)}
-            isAuthenticated={true}
+            isAuthenticated={this.props.user}
           />
           <main>{this.props.children}</main>
         </MuiThemeProvider>

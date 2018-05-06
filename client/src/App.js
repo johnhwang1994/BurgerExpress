@@ -18,7 +18,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Layout>
+        <Layout user={this.props.user}>
           <Route exact path="/" component={BurgerBuilder} />
           <Route exact path="/orders" component={Orders} />
           <Route exact path="/checkout" component={Checkout} />
@@ -28,4 +28,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, { fetchUser })(App);
+const mapStateToProps = state => {
+  return {
+    user: state.auth.user
+  }
+}
+
+export default connect(mapStateToProps, { fetchUser })(App);

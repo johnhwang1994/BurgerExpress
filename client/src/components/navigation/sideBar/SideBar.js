@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+import Typography from 'material-ui/Typography';
+import { Image, Work, BeachAccess } from '@material-ui/icons';
 
 const styles = {
   list: {
@@ -16,20 +19,38 @@ const drawer = props => {
   const list = (
     <div className={classes.list}>
       <List>
+        <ListItem>
+          <Typography variant="title" color="inherit">
+            Burger Express
+          </Typography>
+        </ListItem>
+        <Divider />
         <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <Image />
+          </ListItemIcon>
           <ListItemText primary="Burger Builder" />
         </ListItem>
         {props.isAuthenticated ? (
           <ListItem button component={Link} to="/orders">
+            <ListItemIcon>
+              <Work />
+            </ListItemIcon>
             <ListItemText primary="Orders" />
           </ListItem>
         ) : null}
         {!props.isAuthenticated ? (
           <ListItem button href="/auth/google">
+            <ListItemIcon>
+              <BeachAccess />
+            </ListItemIcon>
             <ListItemText primary="Login with Google" />
           </ListItem>
         ) : (
           <ListItem button href="/api/logout">
+            <ListItemIcon>
+              <BeachAccess />
+            </ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItem>
         )}

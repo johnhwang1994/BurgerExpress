@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 
 import { withStyles } from 'material-ui/styles';
 import AppBar from 'material-ui/AppBar';
@@ -24,42 +23,32 @@ const styles = {
   }
 };
 
-class Header extends Component {
-  render() {
-    const { classes } = this.props;
-    return (
-      <div className={classes.root}>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Menu"
-              onClick={this.props.sideBarToggle}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="title"
-              color="inherit"
-              className={classes.flex}
-            >
-              Burger Express
-            </Typography>
-            <NavigationItems isAuthenticated={this.props.user}/>
-          </Toolbar>
-        </AppBar>
-      </div>
-    );
-  }
+const header = props => {
+  const { classes } = props;
+  return (
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu"
+            onClick={props.sideBarToggle}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="title"
+            color="inherit"
+            className={classes.flex}
+          >
+            Burger Express
+          </Typography>
+          <NavigationItems isAuthenticated={props.user}/>
+        </Toolbar>
+      </AppBar>
+    </div>
+  );
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.auth.user
-  };
-};
-
-export default connect(mapStateToProps)(
-  withStyles(styles)(Header)
-);
+export default withStyles(styles)(header);

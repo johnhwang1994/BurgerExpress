@@ -80,7 +80,6 @@ const mapStateToProps = state => {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     err: state.burgerBuilder.error,
-    user: state.auth.user
   };
 };
 
