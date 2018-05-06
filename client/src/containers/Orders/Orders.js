@@ -10,7 +10,7 @@ class Orders extends Component {
   }
 
   renderOrders() {
-    return this.props.orders.reverse().map(order => {
+    return this.props.orders.map(order => {
       return (
         <Order
           key={order._id}

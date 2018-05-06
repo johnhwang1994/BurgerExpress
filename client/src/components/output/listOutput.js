@@ -12,7 +12,7 @@ export default data => {
       });
     }
   }
-  const listOutput = list.map(item => {
+  const listOutput = list.reverse().map(item => {
     return (
       <Typography
         key={item.name}

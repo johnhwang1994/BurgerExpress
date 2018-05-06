@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import ContactData from '../../components/contactData/ContactData';
 import ReviewModal from '../../components/reviewModal/ReviewModal';
+import Burger from '../../components/burger/Burger';
 
 class Checkout extends Component {
   state = {
@@ -20,11 +21,12 @@ class Checkout extends Component {
 
   render() {
     return (
-      <div>
-        {/* <CheckoutSummary
-          ingredients={this.props.ings}
-          totalPrice={this.props.totalPrice}
-        /> */}
+      <div
+        style={{
+          paddingTop: '50px'
+        }}
+      >
+        <Burger ingredients={this.props.ings} />
         <ContactData onClick={this.handleOpen} />
         <ReviewModal
           myProps={{

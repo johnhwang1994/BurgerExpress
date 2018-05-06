@@ -7,18 +7,16 @@ import { withStyles } from 'material-ui/styles';
 import listOutput from '../output/listOutput';
 
 const styles = {
-  root: {
-    alignItems: 'center',
-    display: 'flex',
-    flexFlow: 'column'
+  content: {
+    marginLeft: '40%',
   }
 };
 
 const order = props => {
   const { classes } = props;
   return (
-    <Card className={classes.root}>
-      <CardContent>
+    <Card>
+      <CardContent className={classes.content}>
         {listOutput(props.ingredients)}
         {listOutput(props.contactData)}
         <Typography

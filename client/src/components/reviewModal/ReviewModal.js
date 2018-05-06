@@ -31,13 +31,6 @@ const styles = theme => ({
   }
 });
 
-const ingredients = {
-  meat: 1,
-  salad: 2,
-  cheese: 1,
-  bacon: 0
-};
-
 const reviewModal = props => {
   const { classes, myProps, history } = props;
   const className = classNames(classes.root, props.className);
@@ -52,7 +45,7 @@ const reviewModal = props => {
         <Typography variant="title" color="inherit" className={classes.title}>
           Confirm Information:
         </Typography>
-        {listOutput(ingredients)}
+        {listOutput(props.ingredients)}
         {listOutput(props.formValues)}
         <Button
           myProps={{

@@ -8,7 +8,7 @@ import BurgerIngredient from './BurgerIngredient';
 const Burger = styled.div`
   width: 100%;
   margin: auto;
-  height: 200px;
+  height: 100px;
   overflow: auto;
   text-align: center;
   font-weight: bold;
@@ -23,7 +23,7 @@ const Burger = styled.div`
     height: 400px;
   }
 
-  @media (min-width: 1000px) and (min-height: 700px) {
+  @media (min-width: 1000px) and (min-height: 1000px) {
     width: 700px;
     height: 600px;
   }
