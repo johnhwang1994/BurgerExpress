@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 // material-ui
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import CssBaseline from 'material-ui/CssBaseline';
 
 import Header from '../../components/navigation/header/Header';
+import SideBar from '../../components/navigation/sideBar/SideBar';
 
 const theme = createMuiTheme({
   palette: {
@@ -22,16 +23,36 @@ const theme = createMuiTheme({
   }
 });
 
-const layout = props => {
-  return (
-    <React.Fragment>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header />
-        <main>{props.children}</main>
-      </MuiThemeProvider>
-    </React.Fragment>
-  );
-};
+class Layout extends Component {
+  state = {
+    showSideDrawer: false
+  };
 
-export default layout;
+  toggleDrawer = (side, open) => () => {
+    this.setState({
+      [side]: open
+    });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <MuiThemeProvider theme={theme}>
+          <CssBaseline />
+          <Header sideBarToggle={this.toggleDrawer('showSideDrawer', true)} />
+          <SideBar
+            myProps={{
+              open: this.state.showSideDrawer,
+              onClose: this.toggleDrawer('showSideDrawer', false)
+            }}
+            toggleDrawer={this.toggleDrawer('showSideDrawer', false)}
+            isAuthenticated={true}
+          />
+          <main>{this.props.children}</main>
+        </MuiThemeProvider>
+      </React.Fragment>
+    );
+  }
+}
+
+export default Layout;

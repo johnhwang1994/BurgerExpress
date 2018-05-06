@@ -35,6 +35,7 @@ class Header extends Component {
               className={classes.menuButton}
               color="inherit"
               aria-label="Menu"
+              onClick={this.props.sideBarToggle}
             >
               <MenuIcon />
             </IconButton>
