@@ -6,7 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
-import { Person, Assignment, Store } from '@material-ui/icons';
+import { Image, Work, BeachAccess } from '@material-ui/icons';
 
 const styles = {
   list: {
@@ -20,21 +20,21 @@ const drawer = props => {
     <div className={classes.list}>
       <List>
         <ListItem>
-          <Typography variant="title" color="inherit" style={{padding: '5px'}}>
+          <Typography variant="title" color="inherit">
             Burger Express
           </Typography>
         </ListItem>
         <Divider />
         <ListItem button component={Link} to="/">
           <ListItemIcon>
-            <Store />
+            <Image />
           </ListItemIcon>
           <ListItemText primary="Burger Builder" />
         </ListItem>
         {props.isAuthenticated ? (
           <ListItem button component={Link} to="/orders">
             <ListItemIcon>
-              <Assignment />
+              <Work />
             </ListItemIcon>
             <ListItemText primary="Orders" />
           </ListItem>
@@ -42,14 +42,14 @@ const drawer = props => {
         {!props.isAuthenticated ? (
           <ListItem button href="/auth/google">
             <ListItemIcon>
-              <Person />
+              <BeachAccess />
             </ListItemIcon>
             <ListItemText primary="Login with Google" />
           </ListItem>
         ) : (
           <ListItem button href="/api/logout">
             <ListItemIcon>
-              <Person />
+              <BeachAccess />
             </ListItemIcon>
             <ListItemText primary="Logout" />
           </ListItem>

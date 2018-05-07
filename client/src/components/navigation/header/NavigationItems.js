@@ -1,20 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 
 import Button from '../../UI/Button';
 
-const styles = {
+const styles = theme => ({
   deskTopOnly: {
     '@media (max-width: 499px)': {
       display: 'none'
     }
+  },
+  selected: {
+    color: theme.palette.secondary.main
   }
-};
+});
 
 const navigationItems = props => {
-  const {classes} = props;
+  const { classes } = props;
   return (
     <div className={classes.deskTopOnly}>
       <Button
@@ -22,7 +25,9 @@ const navigationItems = props => {
           to: '/',
           color: 'inherit',
           size: 'medium',
-          component: Link
+          component: NavLink,
+          exact: true,
+          activeClassName: classes.selected
         }}
       >
         Burger Builder
@@ -33,7 +38,9 @@ const navigationItems = props => {
             to: '/orders',
             color: 'inherit',
             size: 'medium',
-            component: Link
+            component: NavLink,
+            exact: true,
+            activeClassName: classes.selected
           }}
         >
           Orders
@@ -61,7 +68,7 @@ const navigationItems = props => {
         </Button>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default withStyles(styles)(navigationItems);
