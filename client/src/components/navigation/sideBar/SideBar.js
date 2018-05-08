@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import List, { ListItemText, ListItemIcon } from 'material-ui/List';
-import { MenuItem } from 'material-ui/Menu';
+import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 import { Image, Work, BeachAccess } from '@material-ui/icons';
@@ -29,26 +28,23 @@ const drawer = props => {
   const { classes, myProps } = props;
   const list = (
     <List className={classes.list}>
-      <MenuItem className={classes.menuItem}>
+      <ListItem className={classes.menuItem}>
         <Typography variant="title" color="inherit">
           Burger Express
         </Typography>
-      </MenuItem>
+      </ListItem>
       <Divider />
-      <MenuItem
-        component={NavLink}
-        to="/"
-        exact
-        
-        className={classes.menuItem}
-      >
+      <ListItem component={NavLink} to="/" exact className={classes.menuItem}>
         <ListItemIcon className={classes.icon}>
           <Image />
         </ListItemIcon>
-        <ListItemText primary="Burger Builder" classes={{ primary: classes.primary }}/>
-      </MenuItem>
+        <ListItemText
+          primary="Burger Builder"
+          classes={{ primary: classes.primary }}
+        />
+      </ListItem>
       {props.isAuthenticated ? (
-        <MenuItem
+        <ListItem
           component={NavLink}
           to="/orders"
           exact
@@ -57,23 +53,32 @@ const drawer = props => {
           <ListItemIcon className={classes.icon}>
             <Work />
           </ListItemIcon>
-          <ListItemText primary="Orders" classes={{ primary: classes.primary }}/>
-        </MenuItem>
+          <ListItemText
+            primary="Orders"
+            classes={{ primary: classes.primary }}
+          />
+        </ListItem>
       ) : null}
       {!props.isAuthenticated ? (
-        <MenuItem button href="/auth/google" className={classes.menuItem}>
+        <ListItem button component="a" href="/auth/google" className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>
             <BeachAccess />
           </ListItemIcon>
-          <ListItemText primary="Login with Google" classes={{ primary: classes.primary }}/>
-        </MenuItem>
+          <ListItemText
+            primary="Login with Google"
+            classes={{ primary: classes.primary }}
+          />
+        </ListItem>
       ) : (
-        <MenuItem button href="/api/logout" className={classes.menuItem}>
+        <ListItem button component="a" href="/api/logout" className={classes.menuItem}>
           <ListItemIcon className={classes.icon}>
             <BeachAccess />
           </ListItemIcon>
-          <ListItemText primary="Logout" classes={{ primary: classes.primary }}/>
-        </MenuItem>
+          <ListItemText
+            primary="Logout"
+            classes={{ primary: classes.primary }}
+          />
+        </ListItem>
       )}
     </List>
   );
