@@ -1,61 +1,81 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemText, ListItemIcon } from 'material-ui/List';
+import List, { ListItemText, ListItemIcon } from 'material-ui/List';
+import { MenuItem } from 'material-ui/Menu';
 import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 import { Image, Work, BeachAccess } from '@material-ui/icons';
 
-const styles = {
+const styles = theme => ({
   list: {
     width: 250
-  }
-};
+  },
+  menuItem: {
+    '&.active': {
+      backgroundColor: theme.palette.secondary.main,
+      '& $primary, & $icon': {
+        color: theme.palette.common.white
+      }
+    }
+  },
+  primary: {},
+  icon: {}
+});
 
 const drawer = props => {
   const { classes, myProps } = props;
   const list = (
-    <div className={classes.list}>
-      <List>
-        <ListItem>
-          <Typography variant="title" color="inherit">
-            Burger Express
-          </Typography>
-        </ListItem>
-        <Divider />
-        <ListItem button component={Link} to="/">
-          <ListItemIcon>
-            <Image />
+    <List className={classes.list}>
+      <MenuItem className={classes.menuItem}>
+        <Typography variant="title" color="inherit">
+          Burger Express
+        </Typography>
+      </MenuItem>
+      <Divider />
+      <MenuItem
+        component={NavLink}
+        to="/"
+        exact
+        
+        className={classes.menuItem}
+      >
+        <ListItemIcon className={classes.icon}>
+          <Image />
+        </ListItemIcon>
+        <ListItemText primary="Burger Builder" classes={{ primary: classes.primary }}/>
+      </MenuItem>
+      {props.isAuthenticated ? (
+        <MenuItem
+          component={NavLink}
+          to="/orders"
+          exact
+          className={classes.menuItem}
+        >
+          <ListItemIcon className={classes.icon}>
+            <Work />
           </ListItemIcon>
-          <ListItemText primary="Burger Builder" />
-        </ListItem>
-        {props.isAuthenticated ? (
-          <ListItem button component={Link} to="/orders">
-            <ListItemIcon>
-              <Work />
-            </ListItemIcon>
-            <ListItemText primary="Orders" />
-          </ListItem>
-        ) : null}
-        {!props.isAuthenticated ? (
-          <ListItem button href="/auth/google">
-            <ListItemIcon>
-              <BeachAccess />
-            </ListItemIcon>
-            <ListItemText primary="Login with Google" />
-          </ListItem>
-        ) : (
-          <ListItem button href="/api/logout">
-            <ListItemIcon>
-              <BeachAccess />
-            </ListItemIcon>
-            <ListItemText primary="Logout" />
-          </ListItem>
-        )}
-      </List>
-    </div>
+          <ListItemText primary="Orders" classes={{ primary: classes.primary }}/>
+        </MenuItem>
+      ) : null}
+      {!props.isAuthenticated ? (
+        <MenuItem button href="/auth/google" className={classes.menuItem}>
+          <ListItemIcon className={classes.icon}>
+            <BeachAccess />
+          </ListItemIcon>
+          <ListItemText primary="Login with Google" classes={{ primary: classes.primary }}/>
+        </MenuItem>
+      ) : (
+        <MenuItem button href="/api/logout" className={classes.menuItem}>
+          <ListItemIcon className={classes.icon}>
+            <BeachAccess />
+          </ListItemIcon>
+          <ListItemText primary="Logout" classes={{ primary: classes.primary }}/>
+        </MenuItem>
+      )}
+    </List>
   );
 
   return (
