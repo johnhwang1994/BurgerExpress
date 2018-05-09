@@ -63,7 +63,7 @@ class ContactData extends Component {
                   component: Link,
                   to: '/',
                   size: 'large',
-                  color: 'secondary',
+                  color: 'primary',
                   variant: 'raised',
                   style: { float: 'left' }
                 }}
@@ -74,7 +74,7 @@ class ContactData extends Component {
                 myProps={{
                   type: 'submit',
                   size: 'large',
-                  color: 'primary',
+                  color: 'secondary',
                   variant: 'raised',
                   style: { float: 'right' }
                 }}
