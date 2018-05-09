@@ -52,7 +52,7 @@ const reviewModal = props => {
         <div className={classes.buttons}>
           <Button
             myProps={{
-              color: 'secondary',
+              color: 'primary',
               size: 'large',
               variant: 'raised',
               onClick: props.close,
@@ -65,7 +65,7 @@ const reviewModal = props => {
             myProps={{
               component: Link,
               to: '/checkout',
-              color: 'primary',
+              color: 'secondary',
               size: 'large',
               variant: 'raised',
               style: { float: 'right' }

@@ -49,7 +49,7 @@ const reviewModal = props => {
         {listOutput(props.formValues)}
         <Button
           myProps={{
-            color: 'primary',
+            color: 'secondary',
             size: 'large',
             variant: 'raised',
             onClick: (() => props.submitOrder(order, history))
