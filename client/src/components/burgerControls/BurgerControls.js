@@ -28,6 +28,31 @@ const styles = {
 
 const burgerControls = props => {
   const { classes } = props;
+  let button = null;
+  button = props.isAuthenticated ? (
+    <Button
+      myProps={{
+        onClick: props.click,
+        size: 'large',
+        variant: 'raised',
+        color: 'inherit',
+        disabled: Boolean(props.noPurchasable)
+      }}
+    >
+      Order Now!
+    </Button>
+  ) : (
+    <Button
+      myProps={{
+        href: '/auth/google',
+        size: 'large',
+        variant: 'raised',
+        color: 'inherit'
+      }}
+    >
+      Login with Google
+    </Button>
+  );
   return (
     <Paper className={classes.root}>
       <Typography variant="title" color="inherit" className={classes.price}>
@@ -44,17 +69,7 @@ const burgerControls = props => {
           />
         ))}
       </form>
-      <Button
-        myProps={{
-          onClick: props.click,
-          size: "large",
-          variant: "raised",
-          color: "inherit",
-          disabled: !props.purchasable
-        }}
-      >
-        Order Now!
-      </Button>
+      {button}
     </Paper>
   );
 };

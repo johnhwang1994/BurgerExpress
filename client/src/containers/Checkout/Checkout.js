@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-// import CheckoutSummary from '../../components/checkoutSummary/CheckoutSummary';
 import ContactData from '../../components/contactData/ContactData';
-import ReviewModal from '../../components/reviewModal/ReviewModal';
+import ReviewModal from '../../components/modal/ReviewModal';
 import Burger from '../../components/burger/Burger';
 
 class Checkout extends Component {

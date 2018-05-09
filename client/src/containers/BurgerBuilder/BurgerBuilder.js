@@ -5,7 +5,7 @@ import Burger from '../../components/burger/Burger';
 import BurgerControls from '../../components/burgerControls/BurgerControls';
 import { addIngredient, removeIngredient, intiate } from '../../store/actions';
 import Progress from '../../components/UI/Progress';
-import OrderModal from '../../components/reviewModal/OrderModal';
+import OrderModal from '../../components/modal/OrderModal';
 
 class BurgerBuilder extends Component {
   state = {
@@ -60,8 +60,9 @@ class BurgerBuilder extends Component {
           disable={this.getDisableInfo()}
           totalPrice={this.props.totalPrice}
           ingredients={this.props.ings}
-          purchasable={this.updatePurchaseState()}
+          noPurchasable={!this.updatePurchaseState() && this.props.user}
           click={this.handleOpen}
+          isAuthenticated={this.props.user}
         />
         <OrderModal
           myProps={{
@@ -80,6 +81,7 @@ const mapStateToProps = state => {
     ings: state.burgerBuilder.ingredients,
     totalPrice: state.burgerBuilder.totalPrice,
     err: state.burgerBuilder.error,
+    user: state.auth.user
   };
 };
 
