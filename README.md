@@ -14,17 +14,17 @@ A burger edit&order web app implement by MERN stack.
 
 ## Architecture
 
-Dev & Prod
+### Dev & Prod
 
 <img src="./screenshots/Dev & Prod.jpg" alt="Auth"
        width="654" >
 
-Auth Workflow
+### Auth Workflow
 
 <img src="./screenshots/Auth.jpg" alt="Auth"
        width="654" >
 
-Client Server Architecture
+### Client Server Architecture
 
 <img src="./screenshots/Client Server Architecture.jpg" alt="Auth"
        width="654" >
